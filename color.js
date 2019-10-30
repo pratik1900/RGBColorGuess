@@ -13,7 +13,9 @@ var numTiles = 6;
 var colors = getColors(numTiles);
 var pickedColor = colorpicker(colors);
 var score = 0;
+var streak_score = 0;
 document.querySelector("#score").textContent = score;
+document.querySelector("#streak_score").textContent = streak_score;
 heading.textContent = pickedColor;
 
 for (let i = 0;  i < squares.length; i++) {
@@ -27,9 +29,13 @@ for (let i = 0;  i < squares.length; i++) {
                 message.textContent = "CORRECT!!!";
                 gameOngoing = false;
                 if (numTiles==3)
-                {score = score + 1;}
-                else {score = score + 2;}
+                {score = score + 1;
+                    streak_score = streak_score+1;}
+                else {score = score + 2;
+                    streak_score = streak_score+2;
+                }
                 document.querySelector("#score").textContent = score;
+                document.querySelector("#streak_score").textContent = streak_score;
                 changeColors(clickedColor);
                 victoryBlink();
                 setTimeout(reset, 2000);
@@ -38,6 +44,8 @@ for (let i = 0;  i < squares.length; i++) {
                 message.textContent = "WRONG! TRY AGAIN."
                 this.style.backgroundColor = "#232323";
                 this.style.borderColor = "#232323";
+                streak_score = 0;
+                document.querySelector("#streak_score").textContent = streak_score;
             }
         }
     })
