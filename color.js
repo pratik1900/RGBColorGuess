@@ -14,6 +14,7 @@ var colors = getColors(numTiles);
 var pickedColor = colorpicker(colors);
 var score = 0;
 var streak_score = 0;
+var lose = 0;
 document.querySelector("#score").textContent = score;
 document.querySelector("#streak_score").textContent = streak_score;
 heading.textContent = pickedColor;
@@ -39,6 +40,7 @@ for (let i = 0;  i < squares.length; i++) {
                 changeColors(clickedColor);
                 victoryBlink();
                 setTimeout(reset, 2000);
+                lose = 0;
             }
             else {
                 message.textContent = "WRONG! TRY AGAIN."
@@ -46,6 +48,20 @@ for (let i = 0;  i < squares.length; i++) {
                 this.style.borderColor = "#232323";
                 streak_score = 0;
                 document.querySelector("#streak_score").textContent = streak_score;
+                lose = lose + 1;
+                if (numTiles==3 && lose>=2){
+                    message.textContent = "You lost this round :("
+                    lose = 0;
+                    victoryBlink();
+                    setTimeout(reset, 1000);
+                }else{
+                    if(lose>=3){
+                    message.textContent = "You lost this round :("
+                    lose = 0;
+                    victoryBlink();
+                    setTimeout(reset, 2000);
+                    }
+                }
             }
         }
     })
