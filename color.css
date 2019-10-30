@@ -1,0 +1,51 @@
+body{
+    background-color: #232323;
+}
+h1{
+    font-family: monospace;
+    font-size: 4rem;
+    text-align: center;
+    background-color: rgb(6, 93, 151);
+    color: white;
+    transition: 0.5s;
+    padding: 3%;
+    margin: 0;
+}
+
+#stripe {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+
+#easyBtn, #hardBtn{
+    border: none;
+    align-self: stretch;
+    background-color: white;
+}
+.selected {
+    background-color: rgb(6, 93, 151)!important;
+}
+
+.square{
+    background-color: purple;
+    padding: 35%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transition: 0.5s;
+    border-radius: 10%;
+}
+
+#reset {
+    transition: 0.5s;
+}
+
+.default-bg-col {
+    background-color: rgb(6, 93, 151)!important;
+}
+
+.wincolor {
+    color: green;
+}
+
