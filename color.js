@@ -12,6 +12,8 @@ var numTiles = 6;
 
 var colors = getColors(numTiles);
 var pickedColor = colorpicker(colors);
+var score = 0;
+document.querySelector("#score").textContent = score;
 heading.textContent = pickedColor;
 
 for (let i = 0;  i < squares.length; i++) {
@@ -24,6 +26,10 @@ for (let i = 0;  i < squares.length; i++) {
             if (clickedColor === pickedColor) {
                 message.textContent = "CORRECT!!!";
                 gameOngoing = false;
+                if (numTiles==3)
+                {score = score + 1;}
+                else {score = score + 2;}
+                document.querySelector("#score").textContent = score;
                 changeColors(clickedColor);
                 victoryBlink();
                 setTimeout(reset, 2000);
@@ -85,7 +91,7 @@ function reset() {
     console.log(colors);
     pickedColor = colorpicker(colors);
     heading.textContent = pickedColor;
-    message.textContent = "Pick a Color";
+    message.textContent = "Guess the Color of the RGB values above";
 
     for (let i = 0; i<squares.length; i++) {
         if (colors[i]){
