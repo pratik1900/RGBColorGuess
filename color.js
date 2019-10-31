@@ -19,6 +19,9 @@ document.querySelector("#score").textContent = score;
 document.querySelector("#streak_score").textContent = streak_score;
 heading.textContent = pickedColor;
 
+var timeleft = 13;
+
+
 for (let i = 0;  i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i];
 
@@ -41,6 +44,7 @@ for (let i = 0;  i < squares.length; i++) {
                 victoryBlink();
                 setTimeout(reset, 2000);
                 lose = 0;
+                timeleft = 13;
             }
             else {
                 message.textContent = "WRONG! TRY AGAIN."
@@ -62,6 +66,7 @@ for (let i = 0;  i < squares.length; i++) {
                     setTimeout(reset, 2000);
                     }
                 }
+                timeleft = 13;
             }
         }
     })
@@ -85,6 +90,31 @@ hardBtn.addEventListener("click", function() {
     reset();
 });
 
+
+var downloadTimer = setInterval(function(){
+  document.getElementById("countdown").innerHTML = timeleft-3 + " seconds remaining";
+  timeleft -= 1;
+  if(timeleft < 3){
+    document.getElementById("countdown").innerHTML = "Finished !"
+    if (numTiles==3){
+        message.textContent = "You lost this round :("
+        lose = 0;
+        streak_score = 0;
+        victoryBlink();
+        setTimeout(reset, 1000);
+    }else{
+        message.textContent = "You lost this round :("
+        lose = 0;
+        streak_score = 0;
+        victoryBlink();
+        setTimeout(reset, 2000);
+    }
+    timeleft = 13;
+}
+if(timeleft<0){
+    clearInterval(downloadTimer);
+}
+}, 1000);
 
 function getColors(num) {
     let arr = [];
@@ -138,6 +168,8 @@ function victoryBlink() {
 
     }, 2000); 
 }
+
+
 
 function changeColors(col) {
     for(let i=0; i<squares.length; i++) {
